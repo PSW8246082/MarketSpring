@@ -18,13 +18,13 @@
         </section>
         <div>
         	<c:if test = "${sessionScope.customerId ne null }">
-        	 <p class="member1"><a href="/customer/mypage.do?costomer-id=${customerId }">${sessionScope.costomerName } 님</a></p>
+        	 <p class="member1"><a href="/customer/mypage.do?costomer-id=${customerId }">${sessionScope.customerName } 님</a></p>
         	 <p class="member1"><a href="/customer/logout.do">로그아웃</a></p>
         	 <p class="member1"><a href="/notice/clist.do">고객센터</a></p>
         	</c:if>
         	<c:if test ="${sessionScope.customerId eq null }"> 
             <p class="member1"><a href="/customer/register.do">회원가입</a></p>
-            <p class="member1"><a href="/Market/login.do">로그인</a></p>
+            <p class="member1"><a href="/customer/login.do">로그인</a></p>
             <p class="member1"><a href="/notice/clist.do"">고객센터</a></p>
             </c:if>
         </div>

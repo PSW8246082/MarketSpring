@@ -6,7 +6,7 @@ import kr.co.MyMarket.customer.domain.Customer;
 
 public interface CustomerService {
 	
-	public Customer selectCheckLogin(Customer market);
+	
 
 	/**
 	 * 고객등록 Service
@@ -20,5 +20,12 @@ public interface CustomerService {
 	public int deleteCustomer(String customerId);
 
 	public int updateCustomer(Customer customer);
+
+	/**
+	 * 로그인 Service
+	 * @param customer
+	 * @return Customer
+	 */
+	public Customer customerLoginCheck(Customer customer);
 	
 }

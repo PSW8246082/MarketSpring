@@ -7,4 +7,8 @@
   <typeAlias type="kr.co.MyMarket.customer.domain.Customer" alias="Customer"/>
   </typeAliases>
 <!--   매퍼 만들고 등록해야지 -->
+<mappers>
+<mapper resource="mappers/customer-mapper.xml"/>
+</mappers>
+
   </configuration>

@@ -53,7 +53,7 @@
             <main class="contents">
                 <div class="login-wrapper">
                     <h2>Login</h2>
-                    <form action="/Market/login.do" method="post" id="login-form">
+                    <form action="/customer/login.do" method="post" id="login-form">
                         <input type="text" name="costomer-id" placeholder="Email">
                         <input type="password" name="costomer-pw" placeholder="Password">
                         <label for="remember-check">

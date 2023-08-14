@@ -15,4 +15,10 @@ public class CustomerStoreLogic implements CustomerStore{
 		return result;
 	}
 
+	@Override
+	public Customer selectCustomerLogin(SqlSession sqlSession, Customer customer) {
+		Customer cOne = sqlSession.selectOne("CustomerMapper.selectCustomerLogin", customer);
+		return cOne;
+	}
+
 }

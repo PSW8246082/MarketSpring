@@ -8,4 +8,6 @@ public interface CustomerStore {
 
 	int insertCustomer(SqlSession sqlSession, Customer customer);
 
+	Customer selectCustomerLogin(SqlSession sqlSession, Customer customer);
+
 }

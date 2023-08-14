@@ -2,10 +2,29 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  <mapper namespace="CustomerMapper">
-  <resultMap type="Customer" id="customerResultMap">
-  <id property="customerId" column=""/>
-  </resultMap>
-  
-  
-  </mapper>
+<mapper namespace="CustomerMapper">
+	<resultMap type="Customer" id="customerResultMap">
+		<id property="customerId" column="" />
+		<result property="customerId" column="CUSTOMER_ID" />
+		<result property="customerPw" column="CUSTOMER_PW" />
+		<result property="customerName" column="CUSTOMER_NAME" />
+		<result property="customerNo" column="CUSTOMER_NO" />
+		<result property="customerGender" column="CUSTOMER_GENDER" />
+		<result property="customerEmail" column="CUSTOMER_EMAIL" />
+		<result property="customerPhone" column="CUSTOMER_PHONE" />
+		<result property="customerDate" column="CUSTOMER_DATE" />
+		<result property="updateDate" column="UPDATE_DATE" />
+		<result property="customerYn" column="CUSTOMER_YN" />
+	</resultMap>
+
+	<insert id="insertCustomer">
+		INSERT INTO CUSTOMER_TBL
+		VALUES(#{customerId},#{customerPw},#{customerName},#{customerNo},#{customerGender},#{customerEmail},#{customerPhone},DEFAULT,DEFAULT,DEFAULT)
+	</insert>
+	
+	<select id="selectCustomerLogin" resultMap="customerResultMap">
+		SELECT * FROM CUSTOMER_TBL WHERE CUSTOMER_ID = #{customerId } AND CUSTOMER_PW = #{customerPw }
+	</select>
+
+
+</mapper>

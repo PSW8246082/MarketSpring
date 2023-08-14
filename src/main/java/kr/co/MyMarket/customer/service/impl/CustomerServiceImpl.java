@@ -17,12 +17,6 @@ public class CustomerServiceImpl implements CustomerService{
 	private SqlSession SqlSession;
 
 	@Override
-	public Customer selectCheckLogin(Customer market) {
-		
-		return null;
-	}
-
-	@Override
 	public int insertCustomer(Customer customer) {
 		int result = cStore.insertCustomer(SqlSession, customer);
 		return result;
@@ -45,5 +39,13 @@ public class CustomerServiceImpl implements CustomerService{
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+	@Override
+	public Customer customerLoginCheck(Customer customer) {
+		Customer cOne = cStore.selectCustomerLogin(SqlSession, customer);
+		return cOne;
+	}
+
+	
 
 }
