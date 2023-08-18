@@ -24,8 +24,8 @@ public class CustomerServiceImpl implements CustomerService{
 
 	@Override
 	public Customer selectOneById(String customerId) {
-		// TODO Auto-generated method stub
-		return null;
+		Customer cOne = cStore.selectOneById(SqlSession,customerId);
+		return cOne;
 	}
 
 	@Override
@@ -44,6 +44,24 @@ public class CustomerServiceImpl implements CustomerService{
 	public Customer customerLoginCheck(Customer customer) {
 		Customer cOne = cStore.selectCustomerLogin(SqlSession, customer);
 		return cOne;
+	}
+
+	@Override
+	public int removeCustomer(String customerId) {
+		int result = cStore.removeCustomer(SqlSession, customerId);
+		return result;
+	}
+
+	@Override
+	public Customer showOneById(String customerId) {
+		Customer cOne = cStore.showOneById(SqlSession, customerId);
+		return cOne;
+	}
+
+	@Override
+	public int modifyCustomer(Customer customer) {
+		int result = cStore.modifyCustomer(SqlSession, customer);
+		return result;
 	}
 
 	

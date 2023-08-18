@@ -3,9 +3,9 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="CustomerMapper">
+
 	<resultMap type="Customer" id="customerResultMap">
-		<id property="customerId" column="" />
-		<result property="customerId" column="CUSTOMER_ID" />
+		<id property="customerId" column="CUSTOMER_ID" />
 		<result property="customerPw" column="CUSTOMER_PW" />
 		<result property="customerName" column="CUSTOMER_NAME" />
 		<result property="customerNo" column="CUSTOMER_NO" />
@@ -16,6 +16,10 @@
 		<result property="updateDate" column="UPDATE_DATE" />
 		<result property="customerYn" column="CUSTOMER_YN" />
 	</resultMap>
+	
+	<update id= "modifyCustomer">
+  		UPDATE CUSTOMER_TBL SET CUSTOMER_PW = #{customerPw}, CUSTOMER_EMAIL = #{customerEmail} ,CUSTOMER_PHONE = #{customerPhone} WHERE CUSTOMER_ID = #{customerId}
+  	</update>
 
 	<insert id="insertCustomer">
 		INSERT INTO CUSTOMER_TBL
@@ -25,6 +29,18 @@
 	<select id="selectCustomerLogin" resultMap="customerResultMap">
 		SELECT * FROM CUSTOMER_TBL WHERE CUSTOMER_ID = #{customerId } AND CUSTOMER_PW = #{customerPw }
 	</select>
+	
+	<delete id="removeCustomer">
+		DELETE FROM CUSTOMER_TBL WHERE CUSTOMER_ID = #{customerId }
+	</delete>
+	
+	<select id="showOneById" resultMap="customerResultMap">
+		SELECT * FROM CUSTOMER_TBL WHERE CUSTOMER_ID = #{customerId }
+	</select>
+	
+	
+	
 
+	
 
 </mapper>

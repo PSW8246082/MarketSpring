@@ -27,5 +27,26 @@ public interface CustomerService {
 	 * @return Customer
 	 */
 	public Customer customerLoginCheck(Customer customer);
+
+	/**
+	 * 회원탈퇴 service
+	 * @param customerId
+	 * @return int
+	 */
+	public int removeCustomer(String customerId);
+
+	/**
+	 * 회원상세조회
+	 * @param memberId
+	 * @return Customer
+	 */
+	public Customer showOneById(String customerId);
+
+	/**
+	 * 회원정보수정
+	 * @param customer
+	 * @return int
+	 */
+	public int modifyCustomer(Customer customer);
 	
 }

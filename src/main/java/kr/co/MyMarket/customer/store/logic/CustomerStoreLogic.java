@@ -21,4 +21,28 @@ public class CustomerStoreLogic implements CustomerStore{
 		return cOne;
 	}
 
+	@Override
+	public int removeCustomer(SqlSession sqlSession, String customerId) {
+		int result = sqlSession.delete("CustomerMapper.removeCustomer", customerId);
+		return result;
+	}
+
+	@Override
+	public Customer showOneById(SqlSession sqlSession, String customerId) {
+		Customer cOne = sqlSession.selectOne("CustomerMapper.showOneById", customerId);
+		return cOne;
+	}
+
+	@Override
+	public int modifyCustomer(SqlSession sqlSession, Customer customer) {
+		int result = sqlSession.update("CustomerMapper.modifyCustomer", customer);
+		return result;
+	}
+
+	@Override
+	public Customer selectOneById(SqlSession sqlSession, String customerId) {
+		Customer cOne = sqlSession.selectOne("CustomerMapper.selectOneById", customerId);
+		return cOne;
+	}
+
 }

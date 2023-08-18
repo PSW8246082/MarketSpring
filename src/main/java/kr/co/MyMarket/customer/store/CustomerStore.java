@@ -10,4 +10,12 @@ public interface CustomerStore {
 
 	Customer selectCustomerLogin(SqlSession sqlSession, Customer customer);
 
+	int removeCustomer(SqlSession sqlSession, String customerId);
+
+	Customer showOneById(SqlSession sqlSession, String customerId);
+
+	int modifyCustomer(SqlSession sqlSession, Customer customer);
+
+	Customer selectOneById(SqlSession sqlSession, String customerId);
+
 }

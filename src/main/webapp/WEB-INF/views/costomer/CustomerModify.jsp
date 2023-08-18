@@ -75,7 +75,7 @@
                             
                                             
                             <h4>* 이름</h4>
-                            <span class="input_area"><input type="text" maxlength="5" name="customer-name" value="${customer.customerName}"readonly"></span>
+                            <span class="input_area"><input type="text" maxlength="5" name="customer-name" value="${customer.customerName}" readonly></span>
                             
                             <h4>연락처</h4>
                             <span class="input_area"><input type="tel" maxlength="11" name="phone"
@@ -108,7 +108,7 @@
                             </span>
                             <div class="btnArea">
                                 <button id="joinBtn"><a href="javascript:void(0)" onclick="checkDelete();">탈퇴하기</a></button>
-                                <button type="submit" id="joinBtn"><a href="/customer/update.do?costomer-id=${customerId }">수정하기</a></button>
+                                <button type="submit" id="joinBtn">수정하기</button>
                             </div>
                         </form>
                     </div>
