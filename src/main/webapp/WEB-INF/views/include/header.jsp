@@ -25,7 +25,7 @@
         	<c:if test ="${sessionScope.customerId eq null }"> 
             <p class="member1"><a href="/customer/register.do">회원가입</a></p>
             <p class="member1"><a href="/customer/login.do">로그인</a></p>
-            <p class="member1"><a href="/notice/clist.do"">고객센터</a></p>
+            <p class="member1"><a href="/notice/clist.do">고객센터</a></p>
             </c:if>
         </div>
         <div id="headlayer">

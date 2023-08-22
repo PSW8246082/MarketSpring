@@ -18,7 +18,7 @@ ul {
 }
 
 
-/* 헤더 영역 - 로고와 내비바 */
+/* �뿤�뜑 �쁺�뿭 - 濡쒓퀬�� �궡鍮꾨컮 */
 
 header {
     width: 100%;
@@ -107,7 +107,7 @@ header {
 }
 
 
-/* 내비바 */
+/* �궡鍮꾨컮 */
 nav {
     float: left;
     width: 100%;
@@ -148,7 +148,7 @@ nav {
 }
 
 
-/* 본문 */
+/* 蹂몃Ц */
 
 .contents {
     width: 1200px;
@@ -184,7 +184,7 @@ a{
 .member{
     width: 400px;
     /* border: 1px solid #000; */
-    margin: auto; /* 중앙 정렬 */
+    margin: auto; /* 以묒븰 �젙�젹 */
     padding: 0 20px;
     margin-bottom: 20px;
 }
@@ -203,12 +203,12 @@ a{
     color: red;
 }
 .member .field{
-    margin :5px 0; /*상하로 좀 띄워주기*/
+    margin :5px 0; /*�긽�븯濡� 醫� �쓣�썙二쇨린*/
 }
 
 .member b{
     /* border: 1px solid #000; */
-    display: block; /*수직 정렬하기 */
+    display: block; /*�닔吏� �젙�젹�븯湲� */
     margin-bottom: 5px;
 }
 
@@ -229,6 +229,8 @@ color:#fff
 .member input:focus, .member select:focus{
     border: 1px solid #590882;
 }
+
+
 
 .field.birth div{ 
     display: flex;
@@ -288,7 +290,7 @@ color:#fff
 
 
 
-/* 푸터 영역 */
+/* �뫖�꽣 �쁺�뿭 */
 
 
 footer {

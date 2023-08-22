@@ -125,9 +125,11 @@
                         </div>
 <!--                         <input type="number" placeholder="인증번호를 입력하세요"> -->
                     </div>
+                    
+<%--                     <button><a href="/customer/update.do?costomer-id=${customerId }">회원정보수정</a></button> --%>
             
                     <!-- 6. 가입하기 버튼 -->
-<!--                     <input type="submit" value="가입하기"> -->
+                     <a href="/customer/update.do?costomer-id=${customerId }"><input type="button" value="회원정보수정"></a>
 <!--                     </form> -->
                 </div>
             </main>

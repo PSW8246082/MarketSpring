@@ -5,10 +5,12 @@
   <configuration>
   <typeAliases>
   <typeAlias type="kr.co.MyMarket.customer.domain.Customer" alias="Customer"/>
+  <typeAlias type="kr.co.MyMarket.inquiry.domain.Inquiry" alias="Inquiry"/>
   </typeAliases>
 <!--   매퍼 만들고 등록해야지 -->
 <mappers>
 <mapper resource="mappers/customer-mapper.xml"/>
+<mapper resource="mappers/inquiry-mapper.xml"/>
 </mappers>
 
   </configuration>
