@@ -1,6 +1,7 @@
 package kr.co.MyMarket.inquiry.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,5 +41,36 @@ public class InquiryServiceImpl implements InquiryService{
 		List<Inquiry> iList = iStore.selectInquiryList(session, pInfo);
 		return iList;
 	}
+
+
+	@Override
+	public int getListCount(Map<String, String> paramMap) {
+		int result = iStore.selectListCount(session,paramMap);
+		return result;
+	}
+
+
+	@Override
+	public List<Inquiry> searchNoticesByKeyword(PageInfo pInfo, Map<String, String> paramMap) {
+		List<Inquiry> iList = iStore.searchInquiryByKeyword(session, pInfo, paramMap);
+		return iList;
+	}
+
+
+	@Override
+	public Inquiry showDetailInquiry(String inquiryNo) {
+		Inquiry inquiry = iStore.showDetailInquiry(session, inquiryNo);
+		return inquiry;
+	}
+
+
+	@Override
+	public int removeInquiry(String inquiryNo) {
+		int result = iStore.removeInquiry(session, inquiryNo);
+		return result;
+	}
+
+
+	
 
 }

@@ -24,7 +24,7 @@
 	           <p>글번호</p><textarea name="number" id="utitle" rows="1" cols="55" readonly>${requestScope.inquiry.inquiryNo }</textarea>
 	        </div>
 	        <div id="in_title">
-	           <p>작성일</p><textarea name="date" id="utitle" rows="1" cols="55" readonly>${requestScope.inquiry.inquiryDate }</textarea>
+	           <p>작성일</p><textarea name="date" id="utitle" rows="1" cols="55" readonly>${requestScope.inquiry.iCreateDate }</textarea>
 	        </div>
 	   		<div id="in_title">
 	           <p>작성자</p><textarea name="writer" id="utitle" rows="1" cols="55" readonly>${requestScope.inquiry.inquiryWriter }</textarea>
@@ -43,7 +43,7 @@
 	                <button onclick="location.href='/inquiry/ilist.do'">목록으로 돌아가기</button>
 	            </div>
 	            <div class="bt_se">
-	                <button onclick="location.href='/inquiry/iupdate.do?inquiryNo=${inquiry.inquiryNo }'">수정</button>
+	                <button onclick="location.href='/inquiry/update.do?inquiryNo=${inquiry.inquiryNo }'">수정</button>
 	            </div>
 	            <div class="bt_se">
 	                <button onclick="location.href='/inquiry/idelete.do?inquiryNo=${inquiry.inquiryNo }'">삭제</button>

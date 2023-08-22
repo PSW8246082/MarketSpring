@@ -79,7 +79,7 @@
                 
                 <div class="free">
                     <h2>1:1문의</h2>
-                    <div class="button"><a href="/inquiry/iinsert.do">글쓰기</a></div> -->
+                    <div class="button"><a href="/inquiry/iinsert.do">글쓰기</a></div> 
                     <table>
                         <tr>
                             <th class="col1">번호</th>
@@ -104,38 +104,39 @@
                         </tr>
                         </c:forEach>
                     </table>
-<!--       -----------------------------------------------------               -->
-				<tr align="center">
-					<td colspan="5"><c:forEach begin="${pInfo.startNavi }"
-							end="${pInfo.endNavi }" var="p">
-							<c:url var="pageUrl" value="/notice/list.kh">
-								<c:param name="page" value="${p }"></c:param>
-							</c:url>
-							<a href="${pageUrl }">${p }</a>&nbsp;
+<!------------------------------------------------------------------------>
+	<tfoot>
+		<tr align="center">
+			<td colspan="5"><c:forEach begin="${pInfo.startNavi }"
+					end="${pInfo.endNavi }" var="p">
+					<c:url var="pageUrl" value="/inquiry/ilist.do">
+						<c:param name="page" value="${p }"></c:param>
+					</c:url>
+					<a href="${pageUrl }">${p }</a>&nbsp;
 <%-- 					<a href="/notice/list.kh?page=${p }">${p }</a>&nbsp; --%>
-						</c:forEach> <%-- 				${pInfo } --%></td>
-				</tr>
-				<tr>
-					<td colspan="5">
-						<form action="/notice/search.kh" method="get">
-							<select name="searchCondition">
-								<option value="all">전체</option>
-								<option value="writer">작성자</option>
-								<option value="title">제목</option>
-								<option value="content">내용</option>
-							</select> <input type="text" name="searchKeyword"
-								placeholder="검색어를 입력하세요."> <input type="submit"
-								value="검색">
-						</form>
-				</tr>
+				</c:forEach> <%-- 				${pInfo } --%></td>
+		</tr>
+		<tr>
+			<td colspan="5">
+				<form action="/inquiry/search.do" method="get">
+					<select name="searchCondition">
+						<option value="all">전체</option>
+						<option value="writer">작성자</option>
+						<option value="title">제목</option>
+						<option value="content">내용</option>
+					</select> <input type="text" name="searchKeyword"
+						placeholder="검색어를 입력하세요."> <input type="submit"
+						value="검색">
+				</form>
+		</tr>
+	</tfoot>
 
 
-
-				<!-- --------------------------------------------------------------------- -->
+<!-------------------------------------------------------------------------->
                     
                     
          
-<!--                     <div class="button"><a href="/inquiry/iinsert.do">글쓰기</a></div> -->
+<!--------<div class="button"><a href="/inquiry/iinsert.do">글쓰기</a></div> ------>
                     <tr colspan="5" align="center">
 					${pageNavi }
 					</tr>

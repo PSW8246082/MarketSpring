@@ -20,17 +20,57 @@
 	
 	
 	<insert id="insertInquiry">
-		INSERT INTO INQUIRY_TBL VALUES(SEQ_INQUIRY_NO.NEXTVAL, #{inquirySubject }, #{inquiryContent }, #{inquiryWriter }, DEFAULT, DEFAULT, #{inquiryFilename }, #{inquiryFilepath }, #{inquiryFilelength })
+		INSERT INTO INQUIRY_TBL2 VALUES(SEQ_INQUIRY_NO.NEXTVAL, #{inquirySubject }, #{inquiryContent }, #{inquiryWriter }, DEFAULT, DEFAULT, #{inquiryFilename }, #{inquiryFilepath }, #{inquiryFilelength })
 	</insert>
 	
 	<select id="selectListCount" resultType="_int">
-		SELECT COUNT (*) FROM INQUIRY_TBL
+		SELECT COUNT (*) FROM INQUIRY_TBL2
 	</select>
 	
 	<select id="selectInquiryList" resultMap="inquiryResultMap">
-		SELECT * FROM INQUIRY_TBL ORDER BY INQUIRY_NO DESC
+		SELECT * FROM INQUIRY_TBL2 ORDER BY INQUIRY_NO DESC
 	</select>
 	
+	<select id="selectListByKeywordCount" resultType="_int">
+		SELECT COUNT (*) FROM INQUIRY_TBL2
+		<if test="searchCondition == 'all'">
+			WHERE INQUIRY_SUBJECT LIKE '%'||#{ searchKeyword }||'%'OR INQUIRY_WRITER LIKE '%'||#{ searchKeyword }||'%' OR INQUIRY_CONTENT LIKE '%'||#{ searchKeyword }||'%' 
+		</if>
+		<if test="searchCondition == 'writer'">
+			WHERE INQUIRY_WRITER LIKE '%'||#{ searchKeyword }||'%'
+		</if> 
+		<if test="searchCondition == 'title'">
+			WHERE INQUIRY_SUBJECT LIKE '%'||#{ searchKeyword }||'%'
+		</if>
+		<if test="searchCondition == 'content'">
+			WHERE INQUIRY_CONTENT LIKE '%'||#{ searchKeyword }||'%'
+		</if> 
+	</select>
+	
+	<select id="searchInquiryByKeyword" resultMap="inquiryResultMap">
+		SELECT * FROM INQUIRY_TBL2 
+		<if test="searchCondition == 'all'">
+			WHERE INQUIRY_SUBJECT LIKE '%'||#{ searchKeyword }||'%'OR INQUIRY_WRITER LIKE '%'||#{ searchKeyword }||'%' OR INQUIRY_CONTENT LIKE '%'||#{ searchKeyword }||'%' 
+		</if>
+		<if test="searchCondition == 'writer'">
+			WHERE INQUIRY_WRITER LIKE '%'||#{ searchKeyword }||'%'
+		</if> 
+		<if test="searchCondition == 'title'">
+			WHERE INQUIRY_SUBJECT LIKE '%'||#{ searchKeyword }||'%'
+		</if>
+		<if test="searchCondition == 'content'">
+			WHERE INQUIRY_CONTENT LIKE '%'||#{ searchKeyword }||'%'
+		</if> 
+	</select>
+	
+	<select id="showDetailInquiry" resultMap="inquiryResultMap">
+		SELECT * FROM INQUIRY_TBL2 WHERE INQUIRY_NO = #{inquiryNo }
+	</select>
+	
+	
+	<delete id="removeInquiry">
+		DELETE FROM INQUIRY_TBL2 WHERE INQUIRY_NO = #{inquiryNo }
+	</delete>
 	
 	
 	

@@ -1,7 +1,9 @@
 package kr.co.MyMarket.inquiry.controller;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import kr.co.MyMarket.customer.domain.Customer;
 import kr.co.MyMarket.inquiry.domain.Inquiry;
 import kr.co.MyMarket.inquiry.domain.PageInfo;
 import kr.co.MyMarket.inquiry.service.InquiryService;
@@ -75,7 +78,7 @@ public class InquiryController {
 			, HttpServletRequest request
 			, Model model) {
 		try {
-			if(! uploadFile.getOriginalFilename().equals("")) {
+			if(!uploadFile.getOriginalFilename().equals("")) {
 				
 				//================= 파일이름 =================
 				String fileName = uploadFile.getOriginalFilename();
@@ -119,6 +122,139 @@ public class InquiryController {
 			return "common/serviceFail";
 		}
 	}
+	
+	
+	
+	
+	@RequestMapping(value = "/inquiry/search.do", method = RequestMethod.GET)
+	public String searchInquiryList(
+			@RequestParam("searchCondition") String searchCondition
+			, @ RequestParam("searchKeyword") String searchKeyword
+			, @ RequestParam(value="page", required=false, defaultValue="1") Integer currentPage
+			, Model model) {
+		
+		//두가지 값을 하나의 변수로 사용하는법 (searchCondition, searchKeyword)
+		//1.VO클래스 만들기(이미해봄)
+		//2. HashMap 사용(안해봄)
+		Map<String, String> paramMap = new HashMap<String, String>();
+		paramMap.put("searchCondition", searchCondition);
+		paramMap.put("searchKeyword", searchKeyword);
+		
+		int totalCount = service.getListCount(paramMap);
+		PageInfo pInfo = this.getPageInfo(currentPage, totalCount);
+		//put() 메소드를 사용해서 key-value 설정을 하는데 key값(파란색)이 mapper.xml에서 사용된다.
+		
+				
+		List<Inquiry> searchList = service.searchNoticesByKeyword(pInfo, paramMap);
+		
+//		List<Notice> searchList = new ArrayList<Notice>();
+//		switch (searchCondition) {
+//		case "all":
+//			//SELECT * FROM NOTICE_TBL WHERE NOTICE_SUBJECT = ? OR NOTICE_CONTENT = ? OR NOTICE_WRITER =?
+//			searchList = service.searchNoticeByAll(searchKeyword);
+//			break;
+//		case "writer":
+//			//SELECT * FROM NOTICE_TBL WHERE NOTICE_WRITER = ?
+//			searchList = service.searchNoticeByWriter(searchKeyword);
+//			break;
+//		case "title":
+//			//SELECT * FROM NOTICE_TBL WHERE NOTICE_SUBJECT LIKE '%공지%';
+//			searchList = service.searchNoticeByTitle(searchKeyword);
+//			break;
+//		case "content":
+//			//SELECT * FROM NOTICE_TBL WHERE NOTICE_CONTENT = ?
+//			searchList = service.searchNoticeByContent(searchKeyword);
+//			break;
+//		}
+		if(!searchList.isEmpty()) {
+//			model.addAttribute("searchCondition", searchCondition); paramMap으로 써도 됨
+//			model.addAttribute("searchKeyword", searchKeyword);
+			model.addAttribute("paramMap", paramMap);
+			model.addAttribute("pInfo", pInfo);
+			model.addAttribute("sList", searchList);
+			return "inquiry/inquireSearch";
+		} else {
+			model.addAttribute("msg", "데이터 조회가 완료되지 않았습니다.");
+			model.addAttribute("error", "데이터 조회 실패");
+			model.addAttribute("url", "/inquiry/ilist.do");
+			return "common/serviceFail";
+		}
+		
+	}
+	
+	
+	
+	
+	@RequestMapping(value = "/inquiry/idetail.do", method = RequestMethod.GET)
+	public String showDetailInquiry(
+			@RequestParam("inquiryNo") String inquiryNo
+			, @ModelAttribute Inquiry inquiry
+			, Model model) {
+		try {
+			Inquiry iOne = service.showDetailInquiry(inquiryNo);
+			if(iOne != null) {
+				//성공
+				return "inquiry/inquireDetail";
+			} else {
+				model.addAttribute("msg", "문의사항 내용 조회 완료되지 않았습니다.");
+				model.addAttribute("error", "문의사항 내용조회 실패");
+				model.addAttribute("url", "/serviceFail.jsp");
+				return "common/serviceFail";
+			}
+		} catch (Exception e) {
+			model.addAttribute("msg", "관리자에게 문의바람");
+			model.addAttribute("error", e.getMessage());
+			model.addAttribute("url", "/index.jsp");
+			return "common/serviceFail";
+		}
+		
+		
+	}
+	
+	
+	@RequestMapping(value="/inquiry/idelete.do", method = RequestMethod.GET)  //form태그만 post, a태그는 get방식
+	public String removeInquiry(
+			@RequestParam("inquiryNo") String inquiryNo
+			,Model model) {
+		//DELETE FROM MEMBER_TBL WHERE MEMBER_ID = ?
+		try {
+			int result = service.removeInquiry(inquiryNo);
+			if(result>0) {
+				//성공 
+				return "redirect:/inquiry/ilist.do";
+			}else {
+				//실패
+				model.addAttribute("msg", "문의글 삭제 실패");
+				return "common/serviceFail";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("msg", e.getMessage());
+			return "common/serviceFail";
+		}
+	}
+	
+	
+	
+	@RequestMapping(value = "/inquiry/update.do", method = RequestMethod.GET)
+	public String showModifyInquiry(
+			@RequestParam("inquiryNo") String inquiryNo
+			, Model model) {
+		Inquiry inquiry = service.showDetailInquiry(inquiryNo);
+		model.addAttribute("inquiry", inquiry);
+		return "inquiry/inquireUpdate";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	private PageInfo getPageInfo(Integer currentPage, int totalCount) {
