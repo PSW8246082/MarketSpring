@@ -67,4 +67,12 @@ public interface InquiryStore {
 	 */
 	int removeInquiry(SqlSession session, String inquiryNo);
 
+	/**
+	 * 문의사항 수정 Store
+	 * @param session
+	 * @param inquiry
+	 * @return int
+	 */
+	int updateInquiry(SqlSession session, Inquiry inquiry);
+
 }

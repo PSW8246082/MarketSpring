@@ -71,6 +71,15 @@ public class InquiryServiceImpl implements InquiryService{
 	}
 
 
+	@Override
+	public int updateInquiry(Inquiry inquiry) {
+		int result = iStore.updateInquiry(session, inquiry);
+		return result;
+	}
+
+
+	
+
 	
 
 }

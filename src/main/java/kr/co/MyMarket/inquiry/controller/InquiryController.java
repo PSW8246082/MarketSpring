@@ -194,6 +194,7 @@ public class InquiryController {
 			Inquiry iOne = service.showDetailInquiry(inquiryNo);
 			if(iOne != null) {
 				//성공
+				model.addAttribute("inquiry", iOne);   //jsp에서 사용하려면 model.addAttribute를 쓰세요
 				return "inquiry/inquireDetail";
 			} else {
 				model.addAttribute("msg", "문의사항 내용 조회 완료되지 않았습니다.");
@@ -244,6 +245,71 @@ public class InquiryController {
 		model.addAttribute("inquiry", inquiry);
 		return "inquiry/inquireUpdate";
 	}
+	
+	
+	
+	@RequestMapping(value = "/inquiry/iupdate.do", method = RequestMethod.POST)
+	public String updateInquiry(
+			@ModelAttribute Inquiry inquiry
+			, @RequestParam(value="uploadFile", required=false) MultipartFile uploadFile
+			, HttpServletRequest request
+			, Model model) {
+		
+		try {
+				if(!uploadFile.getOriginalFilename().equals("")) {
+				
+				//================= 파일이름 =================
+				String fileName = uploadFile.getOriginalFilename();
+				//(내가 저장한 후에 그 경로르 DB에 저장하도록 준비하는 것)
+				String root =
+						request.getSession().getServletContext().getRealPath("resources");
+				//폴더가 없을 경우 자동생성(내가 업로드한 파일을 저장할 폴더)
+				String saveFolder = root + "\\nuploadFiles";
+				File folder = new File(saveFolder);
+				if(!folder.exists()) {
+					folder.mkdir();
+				}
+				
+				//================= 파일경로 =================
+				String savePath = saveFolder + "\\" + fileName;
+				File file = new File(savePath);
+				// **************** 파일저장 *****************
+				uploadFile.transferTo(file);
+						
+				//================= 파일크기 =================
+				long fileLength = uploadFile.getSize();
+				
+				//DB에 저장하기 위해 notice에 데이터를 Set하는 부분
+				inquiry.setInquiryFilename(fileName);
+				inquiry.setInquiryFilepath(savePath);
+				inquiry.setInquiryFilelength(fileLength);
+			}
+
+
+			int result = service.updateInquiry(inquiry);
+			
+			if(result > 0) {
+				return "redirect:/inquiry/idetail.do?inquiryNo=" + inquiry.getInquiryNo();
+			} else {
+				model.addAttribute("msg", "문의사항 내용 수정 완료되지 않았습니다.");
+				model.addAttribute("error", "문의사항 내용수정 실패");
+				model.addAttribute("url", "/serviceFail.jsp");
+				return "common/serviceFail";
+			}
+		} catch (Exception e) {
+			model.addAttribute("msg", "관리자에게 문의바람");
+			model.addAttribute("error", e.getMessage());
+			model.addAttribute("url", "/index.jsp");
+			return "common/serviceFail";
+		}
+		
+	}
+	
+	
+	
+	
+	
+	
 	
 	
 	

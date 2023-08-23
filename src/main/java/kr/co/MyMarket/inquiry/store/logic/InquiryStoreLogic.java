@@ -74,4 +74,10 @@ public class InquiryStoreLogic implements InquiryStore{
 		return result;
 	}
 
+	@Override
+	public int updateInquiry(SqlSession session, Inquiry inquiry) {
+		int result = session.update("InquiryMapper.updateInquiry", inquiry);
+		return result;
+	}
+
 }

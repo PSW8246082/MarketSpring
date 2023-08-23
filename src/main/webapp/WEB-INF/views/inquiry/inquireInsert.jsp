@@ -73,7 +73,7 @@
                         <div id="write_area">
                             <form action="/inquiry/iinsert.do" method="post" enctype="multipart/form-data">
                             	<div id="in_title">
-                                    <p>Writer</p><textarea name="inquiryWriter" id="utitle" rows="1" cols="55">${customerId }</textarea>
+                                    <p>작성자</p><textarea name="inquiryWriter" id="utitle" rows="1" cols="55">${customerId }</textarea>
                                 </div>
                                 <div id="in_title">
                                     <p>제목<b>*</b></p><textarea name="inquirySubject" id="utitle" rows="1" cols="55" placeholder="제목을 입력해주세요." maxlength="100" required></textarea>

@@ -56,6 +56,15 @@ public interface InquiryService {
 	 */
 	int removeInquiry(String inquiryNo);
 
+	/**
+	 * 문의사항 수정
+	 * @param inquiry
+	 * @return
+	 */
+	int updateInquiry(Inquiry inquiry);
+
+	
+
 	
 
 }

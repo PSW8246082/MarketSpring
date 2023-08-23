@@ -81,18 +81,18 @@
 <!-- 			</ul> -->
 <!-- 			<a href="/inquiry/ilist.do">목록으로 이동</a><br> -->
 <%-- 			<a href="/inquiry/iupdate.do?noticeNo=${inquiry.noticeNo }">수정하기</a><br> --%>
-<!-- <!-- 			DELETE FROM NOTICE_TBL WHERE NOTICE_NO = ?  --> -->
+<!-- <!-- 			DELETE FROM NOTICE_TBL WHERE NOTICE_NO = ?  -->
 <!-- 			<a href="javascript:void(0)" onclick="deleteCheck();">삭제하기</a><br> -->
-<!-- <!-- 			<button id = onclick="">삭제하기</button> --> -->
+<!-- <!-- 			<button id = onclick="">삭제하기</button> -->
 	
 <!-- 	<script> -->
 <!-- // 		const deleteCheck = () => { -->
-<%-- // 			const noticeNo = "${inquiry.noticeNo }"; --%>
+<%-- // 			const noticeNo = "${inquiry.inquiryNo }"; --%>
 <!-- // 			if(confirm("삭제하시겠습니까?")) { -->
 <!-- // 				location.href="/inquiry/idelete.do?noticeNo="+noticeNo; -->
 <!-- // 			} -->
-<!-- // 		} -->
-<!-- 	</script> -->
+<!-- // 		}  -->
+<!-- 	</script>  -->
 	
 	
 	</div>

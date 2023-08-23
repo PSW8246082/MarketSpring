@@ -18,25 +18,25 @@
     <h2>1:1 문의글 수정</h2>
     <hr><br>
         <div id="write_area">
-	 		<form action="/inquiry/iupdate.do" method="post">
+	 		<form action="/inquiry/iupdate.do" method="post" enctype="multipart/form-data">
 			<!-- 	컨트롤러에 No가 필요하니까 hidden으로 만들어줌 -->
 			<input type="hidden" name="inquiryNo" value="${inquiry.inquiryNo }"> 
 		
 			<div id="in_title">
-	     		<p>작성자</p><textarea name="writer" id="utitle" rows="1" cols="55" readonly>${requestScope.inquiry.inquiryWriter }</textarea>
+	     		<p>작성자</p><textarea name="inquiryWriter" id="utitle" rows="1" cols="55" readonly>${requestScope.inquiry.inquiryWriter }</textarea>
 			</div>
 			<div id="in_title">
-			    <p>제목<b>*</b></p><textarea name="title" id="utitle" rows="1" cols="55" placeholder="제목을 입력해주세요." maxlength="100" required>${inquiry.inquirySubject }</textarea>
+			    <p>제목<b>*</b></p><textarea name="inquirySubject" id="utitle" rows="1" cols="55" placeholder="제목을 입력해주세요." maxlength="100" required>${inquiry.inquirySubject }</textarea>
 			</div>
 			<div class="wi_line"></div>
 			<div id="in_content">
-			    <p>내용<b>*</b></p><textarea name="content" id="ucontent" placeholder="내용을 입력해주세요." required>${inquiry.inquiryContent }</textarea>
+			    <p>내용<b>*</b></p><textarea name="inquiryContent" id="ucontent" placeholder="내용을 입력해주세요." required>${inquiry.inquiryContent }</textarea>
 			</div>
 			<div id="select">
 			<label for="file">
 			    <div class="btn-upload">파일 업로드하기</div>
 			</label>
-			<input type="file" name="file" id="file">
+			<input type="file" name="uploadFile" id="file">
 			   <div class="bt_se">
 			       <button type="submit">수정</button>
 			   </div>
