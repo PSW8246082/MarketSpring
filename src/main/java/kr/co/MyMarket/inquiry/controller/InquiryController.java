@@ -1,6 +1,9 @@
 package kr.co.MyMarket.inquiry.controller;
 
 import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -78,31 +81,17 @@ public class InquiryController {
 			, HttpServletRequest request
 			, Model model) {
 		try {
-			if(!uploadFile.getOriginalFilename().equals("")) {
+			if(uploadFile != null && !uploadFile.getOriginalFilename().equals("")) {
 				
-				//================= 파일이름 =================
-				String fileName = uploadFile.getOriginalFilename();
-				//(내가 저장한 후에 그 경로르 DB에 저장하도록 준비하는 것)
-				String root =
-						request.getSession().getServletContext().getRealPath("resources");
-				//폴더가 없을 경우 자동생성(내가 업로드한 파일을 저장할 폴더)
-				String saveFolder = root + "\\nuploadFiles";
-				File folder = new File(saveFolder);
-				if(!folder.exists()) {
-					folder.mkdir();
-				}
-				
-				//================= 파일경로 =================
-				String savePath = saveFolder + "\\" + fileName;
-				File file = new File(savePath);
-				// **************** 파일저장 *****************
-				uploadFile.transferTo(file);
-						
-				//================= 파일크기 =================
-				long fileLength = uploadFile.getSize();
+				Map<String, Object> iMap = this.saveFile(uploadFile, request);
+				String fileName = (String)iMap.get("fileName");
+				String fileRename = (String)iMap.get("fileRename");
+				String savePath = (String)iMap.get("filePath");
+				long fileLength = (long)iMap.get("fileLength");
 				
 				//DB에 저장하기 위해 notice에 데이터를 Set하는 부분
 				inquiry.setInquiryFilename(fileName);
+				inquiry.setInquiryFileRename(fileRename);
 				inquiry.setInquiryFilepath(savePath);
 				inquiry.setInquiryFilelength(fileLength);
 			}
@@ -126,6 +115,63 @@ public class InquiryController {
 	
 	
 	
+	private Map<String, Object> saveFile(MultipartFile uploadFile, HttpServletRequest request) throws Exception {
+		//넘겨야하는 값, 리턴해야하는 값이 여러개일 때 사용하는 방법
+		// 1.vo클래스를 만드는 방법
+		// 2.HashMap을 사용하는 방법
+		Map<String, Object> infoMap = new HashMap<String, Object>(); //long타입도 있으니 Object 사용..
+		
+		
+		//================= 파일이름 =================
+		String fileName = uploadFile.getOriginalFilename();
+		//(내가 저장한 후에 그 경로르 DB에 저장하도록 준비하는 것)
+		String root =
+				request.getSession().getServletContext().getRealPath("resources");
+		//폴더가 없을 경우 자동생성(내가 업로드한 파일을 저장할 폴더)
+		String saveFolder = root + "\\iuploadFiles";
+		File folder = new File(saveFolder);
+		if(!folder.exists()) {
+			folder.mkdir();
+		}
+		
+		//================= 파일경로 =================
+		
+//				이미지 파일 이름 랜덤으로 생성
+//				Random rand = new Random();
+//				String strResult = "N";  //N으로 시작함
+//				for(int i = 0; i<7; i++) {
+//					int result = rand.nextInt(100)+1;
+//					strResult += result+"";
+//				}
+		
+		
+//				이미지 파일 이름 시간으로 생성
+		//나중에 대문자 ss, SS랑 비교하기
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+		String strResult = sdf.format(new Date(System.currentTimeMillis()));
+		
+		//.을 포함하지 않고 자름 +1
+		String ext = fileName.substring(fileName.lastIndexOf(".")+1);  
+		String fileRename = "I" + strResult + "." + ext;
+		String savePath = saveFolder + "\\" + fileRename;
+		File file = new File(savePath);
+		// **************** 파일저장 *****************
+		uploadFile.transferTo(file);
+				
+		//================= 파일크기 =================
+		long fileLength = uploadFile.getSize();
+		
+		//파일이름, 경로, 크기를 넘겨주기 위해 Map에 정보를 저장한 후 return함
+		//왜 return 하는가? DB에 저장하기 위해서 필요한 정보이기 때문에
+		infoMap.put("fileName", fileName);
+		infoMap.put("fileRename", fileRename);
+		infoMap.put("filePath", savePath);
+		infoMap.put("fileLength", fileLength);	
+		
+		return infoMap;
+	}
+
+
 	@RequestMapping(value = "/inquiry/search.do", method = RequestMethod.GET)
 	public String searchInquiryList(
 			@RequestParam("searchCondition") String searchCondition
@@ -327,7 +373,7 @@ public class InquiryController {
 		PageInfo pi = null;
 		
 		int recordCountPerPage = 10;
-		int naviCountPerPage = 10;
+		int naviCountPerPage = 5;
 		int naviTotalCount;
 		int startNavi;
 		int endNavi;

@@ -240,8 +240,8 @@ body{
 .free table {width: 700px; margin: 0 auto; border-collapse: collapse; table-layout: fixed; margin-top: 20px;}
 .free th {border-top: 3px solid #5a079e; border-bottom: 3px solid #5a079e; font-size: 0.9em;}
 .free td {border-bottom: 1px solid gray; font-size: 0.8em;}
-.free .col1, .free .col4 {width: 10%;}
-.free .col3, .free .col5 {width: 14%;}
+.free .col1,  .free .col5, .free .col6  {width: 10%;}
+.free .col3, .free .col4 {width: 14%;}
 .free th, .free td {padding: 10px;}
 .free td + td {text-align: left; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;}
 .free td, .free td + td + td {text-align: center;}
@@ -259,7 +259,18 @@ body{
 .free .number > a {width: 350px; margin: 0 auto;}
 .free .number::after {content: ''; display: block; clear: both;}
 .free .number > a {
-    width:30px; height: 26px; background: rgb(188, 223, 236); border-radius: 5px;
+    width:40px; height: 26px; background: rgb(188, 223, 236); border-radius: 5px;
+    text-align: center; margin: 10px 10px 0px; padding: 4px 0 0; float: left;
+}
+.free .number .select {background: rgb(253, 198, 94); text-decoration: underline;}
+
+/* ------ */
+.free .number {width: 480px; margin: 0 auto; margin-top: 37px;}
+.free .button a:hover {color: black;}
+.free .number > a {width: 350px; margin: 0 auto;}
+.free .number::after {content: ''; display: block; clear: both;}
+.free .number > a {
+    width:40px; height: 26px; background: rgb(188, 223, 236); border-radius: 5px;
     text-align: center; margin: 10px 10px 0px; padding: 4px 0 0; float: left;
 }
 .free .number .select {background: rgb(253, 198, 94); text-decoration: underline;}

@@ -91,9 +91,9 @@
                         </tr>
                         <c:forEach var="inquiry" items="${requestScope.sList }" varStatus="i">
                         <tr>
-                            <td>${i.count }</td>
-                            <td>${inquiry.inquirySubject }</td>
-                            <td>${inquiry.inquiryWriter }</td>
+                            <td>${inquiry.inquiryNo }</td>
+                            <td><a href="/inquiry/idetail.do?inquiryNo=${inquiry.inquiryNo }">${inquiry.inquirySubject }</a></td>
+                            <td>${inquiry.inquiryWriter }<img src="" class="face"></td>
                             <td>
 								<fmt:formatDate pattern="YYYY-MM-dd" value="${inquiry.iCreateDate}"/>
 								<%-- ${notice.nCreateDate} --%>

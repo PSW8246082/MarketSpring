@@ -18,7 +18,7 @@ ul {
 }
 
 
-/* 헤더 영역 - 로고와 내비바 */
+/* �뿤�뜑 �쁺�뿭 - 濡쒓퀬�� �궡鍮꾨컮 */
 
 header {
     width: 100%;
@@ -107,7 +107,7 @@ header {
 }
 
 
-/* 내비바 */
+/* �궡鍮꾨컮 */
 nav {
     float: left;
     width: 100%;
@@ -227,11 +227,11 @@ nav {
 
 
 
-/* 본문 */
+/* 蹂몃Ц */
 
 .contents {
     width: 1200px;
-    height: 1000px;
+    height: 1050px;
     /* background-color: aqua; */
     /* margin: 50px auto; */
 }
@@ -368,9 +368,31 @@ label {
         background: rgb(77,77,77);
         color: #fff;
     }
+    
+ .bt_se > a > button {
+    width: 150px;
+    height: 40px;
+    margin-left: 40px;
+    /* background: #fff; */
+    border: 1px solid rgb(77,77,77);
+    border-radius: 10px;
+    font-weight: 300;
+    cursor: pointer;
+    /* display: flex; */
+    align-items: center;
+    justify-content: center;
+    color: white;
+    background-color: #630b74;
+    font-size: 1.1em;
+}
+
+.bt_se:hover {
+        background: rgb(77,77,77);
+        color: #fff;
+    }
 
 
-/* 푸터 영역 */
+/* �뫖�꽣 �쁺�뿭 */
 
 
 footer {

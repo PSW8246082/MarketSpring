@@ -76,7 +76,7 @@
                                 <a href="../product/cart.html">장바구니</a>
                             </div>
                             <div id="right3">
-                                <a href="../member/inquire.html">1:1문의</a>
+                                <a href="/inquiry/ilist.do"">1:1문의</a>
                                 <a href="#">관심상품</a>
                             </div>
                         </div>

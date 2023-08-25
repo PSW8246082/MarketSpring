@@ -14,18 +14,19 @@
 		<result property="iCreateDate" column="I_CREATE_DATE" />
 		<result property="iUpdateDate" column="I_UPDATE_DATE" />
 		<result property="inquiryFilename" column="INQUIRY_FILENAME" />
+		<result property="inquiryFileRename" column="INQUIRY_FILERENAME" />
 		<result property="inquiryFilepath" column="INQUIRY_FILEPATH" />
 		<result property="inquiryFilelength" column="INQUIRY_FILELENTH" />
 	</resultMap>
 	
 	
 	<insert id="insertInquiry">
-		INSERT INTO INQUIRY_TBL2 VALUES(SEQ_INQUIRY_NO.NEXTVAL, #{inquirySubject }, #{inquiryContent }, #{inquiryWriter }, DEFAULT, DEFAULT, #{inquiryFilename }, #{inquiryFilepath }, #{inquiryFilelength })
+		INSERT INTO INQUIRY_TBL2 VALUES(SEQ_INQUIRY_NO.NEXTVAL, #{inquirySubject }, #{inquiryContent }, #{inquiryWriter }, DEFAULT, DEFAULT, #{inquiryFilename },  #{inquiryFileRename }, #{inquiryFilepath }, #{inquiryFilelength })
 	</insert>
 	
 	<update id="updateInquiry">
 		UPDATE INQUIRY_TBL2 SET INQUIRY_SUBJECT= #{inquirySubject }, INQUIRY_CONTENT = #{inquiryContent }, I_CREATE_DATE = DEFAULT, I_UPDATE_DATE = DEFAULT,
-		INQUIRY_FILENAME = #{inquiryFilename }, INQUIRY_FILEPATH = #{inquiryFilepath }, INQUIRY_FILELENTH = #{inquiryFilelength }  WHERE INQUIRY_NO = #{inquiryNo }
+		INQUIRY_FILENAME = #{inquiryFilename }, INQUIRY_FILERENAME = #{inquiryFileRename }, INQUIRY_FILEPATH = #{inquiryFilepath }, INQUIRY_FILELENTH = #{inquiryFilelength }  WHERE INQUIRY_NO = #{inquiryNo }
 	</update>
 	
 	<select id="selectListCount" resultType="_int">

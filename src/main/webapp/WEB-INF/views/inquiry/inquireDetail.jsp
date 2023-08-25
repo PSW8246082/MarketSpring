@@ -36,9 +36,20 @@
 	        <div id="in_content">
 	            <p>내용<b>*</b></p><textarea name="content" id="ucontent" readonly>${requestScope.inquiry.inquiryContent }</textarea>
 	        </div>
+	        	
+	        <div id="in_content"> 
+	        	<!-- 다운로드 받을 때 -->
+				<%-- <a href="../resources/iuploadFiles/${inquiry.inquiryFileRename }" download>${inquiry.inquiryFilename } 다운로드</a>   --%>
+	        	<!-- 첨부파일 화면에 띄울때 -->
+				<img alt="첨부파일" width="220px" height="100px" src="../resources/iuploadFiles/${inquiry.inquiryFileRename }">
+	        </div>
+	
+			<br><br>
 	
 	        <div id="select">
-	            
+	            <div class="bt_se">
+	                <a href="../resources/iuploadFiles/${inquiry.inquiryFileRename }" download><button class="bt_se">이미지 다운로드</button></a>
+	            </div>
 				<div class="bt_se">
 	                <button onclick="location.href='/inquiry/ilist.do'">목록으로 돌아가기</button>
 	            </div>
@@ -48,10 +59,8 @@
 	            <div class="bt_se">
 	                <button onclick="location.href='/inquiry/idelete.do?inquiryNo=${inquiry.inquiryNo }'">삭제</button>
 	            </div>
-	            
-	
 	        </div>
-	
+	       
 	</div>
 	
 	
