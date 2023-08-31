@@ -32,7 +32,7 @@
          <nav>
              <ul id="topMenu">
                      <li><a href="#"><img id="menuicon" src="../resources/images/index/MenuIcon.png" alt="MenuIcon">카테고리</a></li>
-                     <li><a href="#">카테고리</a></li>
+<!--                      <li><a href="#">카테고리</a></li> -->
                      <li><a href="#">신상품</a></li>
                      <li><a href="#">베스트</a></li>
                      <li><a href="#">알뜰쇼핑</a></li>
@@ -47,7 +47,7 @@
              <ul>
                  <li><a target="iframe1" href="/notice/clist.do"">공지사항</a></li>
                  <li><a target="iframe1" href="/inquiry/ilist.do"">1:1문의</a></li>
-                 <li><a target="iframe1" href="#">자유게시판</a></li>
+                 <li><a target="iframe1" href="/board/blist.do">자유게시판</a></li>
                  <li><a target="iframe1" href="#">자주하는 질문</a></li>
              </ul>
              </aside>

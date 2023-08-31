@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>customerCenter</title>
+<title>Inquery</title>
 <link rel="stylesheet" href="/resources/css/costomerCenter.css">
 </head>
 <body>
@@ -77,10 +77,18 @@
 
 <!--             </header> -->
             <main class="contents">
-                
                 <div class="free">
-                    <h2>1:1문의</h2>
-					<!-- <div class="button"><a href="/inquiry/iinsert.do">글쓰기</a></div>  -->
+                	<div class="free_header">
+<!-- 	                    <h2> -->
+<!-- 	                    	1:1문의 -->
+<!-- 	                    </h2> -->
+	                    <span class="left">
+	                    	1:1문의
+	                    </span>
+						<span class="button">
+							<a href="/inquiry/iinsert.do">글쓰기</a>
+						</span>
+					</div> 
                     <table>
                         <tr>
                             <th class="col1">번호</th>
@@ -108,72 +116,60 @@
                         </c:forEach>
                     </table>
 <!------------------------------------------------------------------------>
-	<tfoot>
-	<div class="number">
-		<tr align="center">
-			<td colspan="6">
-			
-				<c:if test="${pInfo.startNavi != 1 }">
-				<c:url var="prevUrl" value="/inquiry/ilist.do">
-				<c:param name="page" value=""></c:param>
-				</c:url>
-				<a href="${prevUrl }">이전</a>
-				</c:if>
-			
-					<c:forEach begin="${pInfo.startNavi }" end="${pInfo.endNavi }" var="p">
-					<c:url var="pageUrl" value="/inquiry/ilist.do">
-						<c:param name="page" value="${p }"></c:param>
-					</c:url>
-					<a href="${pageUrl }">${p }</a>&nbsp;
-<%-- 					<a href="/notice/list.kh?page=${p }">${p }</a>&nbsp; --%>
-				</c:forEach> 
-				<%-- 				${pInfo } --%>
-				
-				<c:if test="${pInfo.endNavi != pInfo.naviTotalCount }">
-				<c:url var="nextUrl" value="/inquiry/ilist.do"> 
-				<c:param name="page" value="${pInfo.endNavi + 1 }"></c:param>
-				</c:url>
-				<a href="${nextUrl }">다음</a>
-				</c:if>
-				
-			</td>
-		</tr>
+<!-- 	<tfoot></tfoot> -->
+				<div class="number">
+		<!-- 			<tr> -->
+		<!-- 				<td colspan="6"> -->
+					<div class="pagination">
+						<c:if test="${pInfo.startNavi != 1 }">
+							<c:url var="prevUrl" value="/inquiry/ilist.do">
+								<c:param name="page" value=""></c:param>
+							</c:url>
+							<a href="${prevUrl }">이전</a>
+						</c:if>
+							<c:forEach begin="${pInfo.startNavi }" end="${pInfo.endNavi }" var="p">
+							<c:url var="pageUrl" value="/inquiry/ilist.do">
+								<c:param name="page" value="${p }"></c:param>
+							</c:url>
+							<a href="${pageUrl }">${p }</a>&nbsp;
+		<%-- 					<a href="/notice/list.kh?page=${p }">${p }</a>&nbsp; --%>
+						</c:forEach> 
+						<%-- 				${pInfo } --%>
+						<c:if test="${pInfo.endNavi != pInfo.naviTotalCount }">
+							<c:url var="nextUrl" value="/inquiry/ilist.do"> 
+								<c:param name="page" value="${pInfo.endNavi + 1 }"></c:param>
+							</c:url>
+							<a href="${nextUrl }">다음</a>
+						</c:if>
+					</div>
+		<!-- 			<div class=""> -->
+		<!-- 				<a href="/inquiry/iinsert.do">글쓰기</a> -->
+		<!-- 			</div> -->
+		<!-- 				</td> -->
+		<!-- 			</tr> -->
+					
+					<br><br><br>
+					
+		<!-- 			<tr> -->
+		<!-- 				<td colspan="5"> -->
 		
-		<br><br><br>
-		
-		<tr>
-			<td colspan="5">
-				<form action="/inquiry/search.do" method="get">
-					<select name="searchCondition">
-						<option value="all">전체</option>
-						<option value="writer">작성자</option>
-						<option value="title">제목</option>
-						<option value="content">내용</option>
-					</select> <input type="text" name="searchKeyword"
-						placeholder="검색어를 입력하세요."> <input type="submit"
-						value="검색">
-				</form>
-		</tr>
-		</div>
-	</tfoot>
-
-
+				<div class="inquirySearch">
+					<form action="/inquiry/search.do" method="get">
+						<select name="searchCondition">
+							<option value="all">전체</option>
+							<option value="writer">작성자</option>
+							<option value="title">제목</option>
+							<option value="content">내용</option>
+						</select> <input type="text" name="searchKeyword"
+							placeholder="검색어를 입력하세요."> <input type="submit"
+							value="검색">
+					</form>
+				</div>
+		<!-- 			</tr> -->
+				</div>
+			</div>
 <!-------------------------------------------------------------------------->
-                    
-                    
-         
-	<div class="button"><a href="/inquiry/iinsert.do">글쓰기</a></div>
-	
-	
-<!--                     <tr colspan="5" align="center"> -->
-<%-- 					${pageNavi } --%>
-<!-- 					</tr> -->
-<!--                     <div class="number"> -->
-            
-                    </div>
-                </div>
-                
-            </main>
+        </main>
             <footer>
                 <section id="bottomMenu">
                     <ul>

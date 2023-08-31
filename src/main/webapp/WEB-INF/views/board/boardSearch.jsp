@@ -80,7 +80,7 @@
                 
                 <div class="free">
                     <h2>1:1문의</h2>
-<!--                     <div class="button"><a href="/inquiry/iinsert.do">글쓰기</a></div>  -->
+<!--                     <div class="button"><a href="/board/iinsert.do">글쓰기</a></div>  -->
                     <table>
                         <tr>
                             <th class="col1">번호</th>
@@ -89,18 +89,18 @@
                             <th class="col4">작성날짜</th>
                             <th class="col5">첨부파일</th>
                         </tr>
-                        <c:forEach var="inquiry" items="${requestScope.sList }" varStatus="i">
+                        <c:forEach var="board" items="${requestScope.sList }" varStatus="i">
                         <tr>
-                            <td>${inquiry.inquiryNo }</td>
-                            <td><a href="/inquiry/idetail.do?inquiryNo=${inquiry.inquiryNo }">${inquiry.inquirySubject }</a></td>
-                            <td>${inquiry.inquiryWriter }<img src="" class="face"></td>
+                            <td>${board.boardNo }</td>
+                            <td><a href="/board/bdetail.do?boardNo=${board.boardNo }">${board.boardTitle }</a></td>
+                            <td>${board.boardWriter }<img src="" class="face"></td>
                             <td>
-								<fmt:formatDate pattern="YYYY-MM-dd" value="${inquiry.iCreateDate}"/>
+								<fmt:formatDate pattern="YYYY-MM-dd" value="${board.bCreateDate}"/>
 								<%-- ${notice.nCreateDate} --%>
 							</td>
                             <td>
-								<c:if test="${!empty inquiry.inquiryFilename }">o</c:if>
-								<c:if test="${empty inquiry.inquiryFilename }">x</c:if>
+								<c:if test="${!empty board.boardFilename }">o</c:if>
+								<c:if test="${empty board.boardFilename }">x</c:if>
 							</td>
                         </tr>
                         </c:forEach>
@@ -117,14 +117,14 @@
 			<td colspan="6">
 			
 				<c:if test="${pInfo.startNavi != 1 }">
-				<c:url var="prevUrl" value="/inquiry/ilist.do">
+				<c:url var="prevUrl" value="/board/blist.do">
 				<c:param name="page" value=""></c:param>
 				</c:url>
 				<a href="${prevUrl }">이전</a>
 				</c:if>
 			
 					<c:forEach begin="${pInfo.startNavi }" end="${pInfo.endNavi }" var="p">
-					<c:url var="pageUrl" value="/inquiry/ilist.do">
+					<c:url var="pageUrl" value="/board/blist.do">
 						<c:param name="page" value="${p }"></c:param>
 					</c:url>
 					<a href="${pageUrl }">${p }</a>&nbsp;
@@ -133,7 +133,7 @@
 				<%-- 				${pInfo } --%>
 				
 				<c:if test="${pInfo.endNavi != pInfo.naviTotalCount }">
-				<c:url var="nextUrl" value="/inquiry/ilist.do"> 
+				<c:url var="nextUrl" value="/board/blist.do"> 
 				<c:param name="page" value="${pInfo.endNavi + 1 }"></c:param>
 				</c:url>
 				<a href="${nextUrl }">다음</a>
@@ -146,7 +146,7 @@
 		
 		<tr>
 			<td colspan="5">
-				<form action="/inquiry/search.do" method="get">
+				<form action="/board/search.do" method="get">
 					<select name="searchCondition">
 						<option value="all">전체</option>
 						<option value="writer">작성자</option>
@@ -166,7 +166,7 @@
                     
                     
          
-	<div class="button"><a href="/inquiry/iinsert.do">글쓰기</a></div> 
+	<div class="button"><a href="/board/binsert.do">글쓰기</a></div> 
 <!--                     <tr colspan="5" align="center"> -->
 <%-- 					${pageNavi } --%>
 <!-- 					</tr> -->

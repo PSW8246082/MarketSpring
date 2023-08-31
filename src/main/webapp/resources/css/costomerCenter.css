@@ -220,7 +220,7 @@ nav {
 
 .contents {
     width: 1200px;
-    height: 700px;
+    height: 650px;
     /* background-color: aqua; */
     /* margin: 50px auto; */
 }
@@ -236,6 +236,19 @@ body{
 }
 
 .free {margin-top: 100px;}
+	.free .free_header {
+		display : flex;
+		margin-left : 246px;
+		margin-bottom: -10px;
+	}
+	.free .free_header .left {
+		font-size: 27px;
+    	font-weight: bolder;
+    	margin-left: 12px;
+	}
+	.free .free_header .button {
+		margin-left: -87px;
+	}
 .free h2 {margin-left: 260px;}
 .free table {width: 700px; margin: 0 auto; border-collapse: collapse; table-layout: fixed; margin-top: 20px;}
 .free th {border-top: 3px solid #5a079e; border-bottom: 3px solid #5a079e; font-size: 0.9em;}
@@ -249,23 +262,32 @@ body{
 .free a:hover {color: #6A24FE;}
 .free a + span {font-size: .7em; color: red}
 .free .face {width: 12px;}
-.free .button {width: 700px; margin: 20px auto 5px; text-align: right;}
+.free .button {width: 700px; margin: 8px auto 7px; text-align: right;}
 .free .button a {
     background: #6A24FE; border-radius: 3px;
     padding: 6px 8px; margin: 25px; text-decoration: none; color: white;
 }
 .free .number {width: 350px; margin: 0 auto; margin-top: 40px;}
-.free .button a:hover {color: black;}
-.free .number > a {width: 350px; margin: 0 auto;}
+.free .button .pagination a:hover {color: black;}
 .free .number::after {content: ''; display: block; clear: both;}
-.free .number > a {
-    width:40px; height: 26px; background: rgb(188, 223, 236); border-radius: 5px;
-    text-align: center; margin: 10px 10px 0px; padding: 4px 0 0; float: left;
+.free .number .pagination > a {
+    width:40px; 
+    height: 26px; 
+    background: rgb(188, 223, 236); 
+    border-radius: 5px;
+    --text-align: center; 
+    margin: 10px 10px 0px; 
+    padding: 3px 8px; 
+    --float: left;
 }
 .free .number .select {background: rgb(253, 198, 94); text-decoration: underline;}
 
+.free .number .inquirySearch {
+	margin-top: -25px;
+}
+
 /* ------ */
-.free .number {width: 480px; margin: 0 auto; margin-top: 37px;}
+.free .number {width: 480px; margin: 0 auto; margin-top: 40px; text-align: center; }
 .free .button a:hover {color: black;}
 .free .number > a {width: 350px; margin: 0 auto;}
 .free .number::after {content: ''; display: block; clear: both;}

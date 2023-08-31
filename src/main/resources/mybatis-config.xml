@@ -7,15 +7,17 @@
 		<setting name="jdbcTypeForNull" value="NULL"></setting>
 	</settings>
 	<typeAliases>
-		<typeAlias type="kr.co.MyMarket.customer.domain.Customer"
-			alias="Customer" />
-		<typeAlias type="kr.co.MyMarket.inquiry.domain.Inquiry"
-			alias="Inquiry" />
+		<typeAlias type="kr.co.MyMarket.customer.domain.Customer"  alias="Customer" />
+		<typeAlias type="kr.co.MyMarket.inquiry.domain.Inquiry"  alias="Inquiry" />
+		<typeAlias type="kr.co.MyMarket.board.domain.Board" alias="Board"/>
+		<typeAlias type="kr.co.MyMarket.board.domain.Reply" alias="Reply"/>
 	</typeAliases>
 	<!-- 매퍼 만들고 등록해야지 -->
 	<mappers>
 		<mapper resource="mappers/customer-mapper.xml" />
 		<mapper resource="mappers/inquiry-mapper.xml" />
+		<mapper resource="mappers/board-mapper.xml"/>
+		<mapper resource="mappers/reply-mapper.xml"/>
 	</mappers>
 
 </configuration>

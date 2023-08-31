@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>customerCenter</title>
+<title>Board</title>
 <link rel="stylesheet" href="/resources/css/costomerCenter.css">
 </head>
 <body>
@@ -77,10 +77,16 @@
 
 <!--             </header> -->
             <main class="contents">
-                
                 <div class="free">
-                    <h2>1:1문의</h2>
-<!--                     <div class="button"><a href="/inquiry/iinsert.do">글쓰기</a></div>  -->
+                	<div class="free_header">
+
+	                    <span class="left">
+	                    	자유게시판
+	                    </span>
+						<span class="button">
+							<a href="/board/binsert.do">글쓰기</a>
+						</span>
+					</div> 
                     <table>
                         <tr>
                             <th class="col1">번호</th>
@@ -88,94 +94,81 @@
                             <th class="col3">작성자</th>
                             <th class="col4">작성날짜</th>
                             <th class="col5">첨부파일</th>
+                            <th class="col6">조회수</th>
                         </tr>
-                        <c:forEach var="inquiry" items="${requestScope.sList }" varStatus="i">
+                        <c:forEach var="board" items="${requestScope.bList }" varStatus="i">
                         <tr>
-                            <td>${inquiry.inquiryNo }</td>
-                            <td><a href="/inquiry/idetail.do?inquiryNo=${inquiry.inquiryNo }">${inquiry.inquirySubject }</a></td>
-                            <td>${inquiry.inquiryWriter }<img src="" class="face"></td>
+                            <td>${board.boardNo }</td>
+<!--                             css수정하고 여기 주석 다시 풀어주기 -->
+                            <td><a href="/board/bdetail.do?boardNo=${board.boardNo }">${board.boardTitle }</a></td>
+                            <td>${board.boardWriter } <img src="" class="face"></td>
                             <td>
-								<fmt:formatDate pattern="YYYY-MM-dd" value="${inquiry.iCreateDate}"/>
-								<%-- ${notice.nCreateDate} --%>
+								<fmt:formatDate pattern="YYYY-MM-dd" value="${board.bCreateDate }"/>
+<%-- 								${notice.nCreateDate} --%>
 							</td>
                             <td>
-								<c:if test="${!empty inquiry.inquiryFilename }">o</c:if>
-								<c:if test="${empty inquiry.inquiryFilename }">x</c:if>
+								<c:if test="${!empty board.boardFilename }">o</c:if>
+								<c:if test="${empty board.boardFilename }">x</c:if>
 							</td>
+							<td>${i.count }</td>
                         </tr>
                         </c:forEach>
                     </table>
-                    
-                    
-                    
-                    
-                    
-<!---------------------------------------------------------------------------------->
-	<tfoot>
-		<div class="number">
-		<tr align="center">
-			<td colspan="6">
-			
-				<c:if test="${pInfo.startNavi != 1 }">
-				<c:url var="prevUrl" value="/inquiry/ilist.do">
-				<c:param name="page" value=""></c:param>
-				</c:url>
-				<a href="${prevUrl }">이전</a>
-				</c:if>
-			
-					<c:forEach begin="${pInfo.startNavi }" end="${pInfo.endNavi }" var="p">
-					<c:url var="pageUrl" value="/inquiry/ilist.do">
-						<c:param name="page" value="${p }"></c:param>
-					</c:url>
-					<a href="${pageUrl }">${p }</a>&nbsp;
-<%-- 					<a href="/notice/list.kh?page=${p }">${p }</a>&nbsp; --%>
-				</c:forEach> 
-				<%-- 				${pInfo } --%>
-				
-				<c:if test="${pInfo.endNavi != pInfo.naviTotalCount }">
-				<c:url var="nextUrl" value="/inquiry/ilist.do"> 
-				<c:param name="page" value="${pInfo.endNavi + 1 }"></c:param>
-				</c:url>
-				<a href="${nextUrl }">다음</a>
-				</c:if>
-				
-			</td>
-		</tr>
+<!------------------------------------------------------------------------>
+<!-- 	<tfoot></tfoot> -->
+				<div class="number">
+		<!-- 			<tr> -->
+		<!-- 				<td colspan="6"> -->
+					<div class="pagination">
+						<c:if test="${pInfo.startNavi != 1 }">
+							<c:url var="prevUrl" value="/board/blist.do">
+								<c:param name="page" value=""></c:param>
+							</c:url>
+							<a href="${prevUrl }">이전</a>
+						</c:if>
+							<c:forEach begin="${pInfo.startNavi }" end="${pInfo.endNavi }" var="p">
+							<c:url var="pageUrl" value="/board/blist.do">
+								<c:param name="page" value="${p }"></c:param>
+							</c:url>
+							<a href="${pageUrl }">${p }</a>&nbsp;
+		<%-- 					<a href="/notice/list.kh?page=${p }">${p }</a>&nbsp; --%>
+						</c:forEach> 
+						<%-- 				${pInfo } --%>
+						<c:if test="${pInfo.endNavi != pInfo.naviTotalCount }">
+							<c:url var="nextUrl" value="/board/blist.do"> 
+								<c:param name="page" value="${pInfo.endNavi + 1 }"></c:param>
+							</c:url>
+							<a href="${nextUrl }">다음</a>
+						</c:if>
+					</div>
+		<!-- 			<div class=""> -->
+		<!-- 				<a href="/inquiry/iinsert.do">글쓰기</a> -->
+		<!-- 			</div> -->
+		<!-- 				</td> -->
+		<!-- 			</tr> -->
+					
+					<br><br><br>
+					
+		<!-- 			<tr> -->
+		<!-- 				<td colspan="5"> -->
 		
-		<br><br><br>
-		
-		<tr>
-			<td colspan="5">
-				<form action="/inquiry/search.do" method="get">
-					<select name="searchCondition">
-						<option value="all">전체</option>
-						<option value="writer">작성자</option>
-						<option value="title">제목</option>
-						<option value="content">내용</option>
-					</select> <input type="text" name="searchKeyword"
-						placeholder="검색어를 입력하세요."> <input type="submit"
-						value="검색">
-				</form>
-			</tr>
-		</div>
-	</tfoot>
-<!-- ------------------------------------------------------------------------------->
-
-
-
-                    
-                    
-         
-	<div class="button"><a href="/inquiry/iinsert.do">글쓰기</a></div> 
-<!--                     <tr colspan="5" align="center"> -->
-<%-- 					${pageNavi } --%>
-<!-- 					</tr> -->
-<!--                     <div class="number"> -->
-            
-                    </div>
-                </div>
-                
-            </main>
+				<div class="boardSearch">
+					<form action="/board/search.do" method="get">
+						<select name="searchCondition">
+							<option value="all">전체</option>
+							<option value="writer">작성자</option>
+							<option value="title">제목</option>
+							<option value="content">내용</option>
+						</select> <input type="text" name="searchKeyword"
+							placeholder="검색어를 입력하세요."> <input type="submit"
+							value="검색">
+					</form>
+				</div>
+		<!-- 			</tr> -->
+				</div>
+			</div>
+<!-------------------------------------------------------------------------->
+        </main>
             <footer>
                 <section id="bottomMenu">
                     <ul>
