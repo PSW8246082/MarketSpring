@@ -111,6 +111,7 @@
                     <div class="field">
                         <label for="email"><b id="email">본인 확인 이메일<small>(선택)</small></b></label>
                         <input type="email" id="email" name="email" placeholder="선택입력">
+                        <input type="button" value="인증메일 받기">
                     </div>
                     
                     <div class="field tel-number">

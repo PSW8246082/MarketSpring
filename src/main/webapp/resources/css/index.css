@@ -18,7 +18,7 @@ ul {
 }
 
 
-/* 헤더 영역 - 로고와 내비바 */
+/* �뿤�뜑 �쁺�뿭 - 濡쒓퀬�� �궡鍮꾨컮 */
 
 header {
     width: 100%;
@@ -108,7 +108,7 @@ header {
 
 
 
-/* 내비바 */
+/* �궡鍮꾨컮 */
 nav {
     float: left;
     width: 100%;
@@ -149,7 +149,7 @@ nav {
 }
 
 
-/* 본문 */
+/* 蹂몃Ц */
 
 .contents {
     width: 1200px;
@@ -206,10 +206,18 @@ nav {
     height: 20px;
     width: 190px;
     margin-top: 10px;
-    margin-left: 60px;
+    margin-left: 160px;
     margin-right: 60px;
     color: black;
     font-size: 0.9em;
+    /* float: left; */
+    /* display: flex; */
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: space-between;
+    justify-content: space-evenly;
+    align-items: center;
 }
 .ProductName1 {
     display: flex;
@@ -269,7 +277,7 @@ nav {
 
 
 
-/* 푸터 영역 */
+/* �뫖�꽣 �쁺�뿭 */
 
 
 footer {
